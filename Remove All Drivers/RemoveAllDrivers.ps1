@@ -1,0 +1,1 @@
+Get-CMDriver | Remove-CMDriver -force
