@@ -1,1 +1,1 @@
-# happy scipts
+# happysccm.com scripts
