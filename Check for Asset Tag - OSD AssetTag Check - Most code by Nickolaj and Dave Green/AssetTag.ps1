@@ -5,7 +5,7 @@
     $Form.Add_Shown({$Form.Activate()})
     [void] $Form.ShowDialog()
 }
-  
+ 
 
 
 
@@ -35,12 +35,12 @@ $model = Get-WmiObject -Class Win32_ComputerSystem | ForEach-Object {$_.Model}
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
 $machineName =  $tsenv.Value("_SMSTSMachineName")
 
-If (!$machineName) {
+If ([string]::IsNullOrWhitespace($machineName) -or ($machineName -like 'MININT*')) {
 
 $bios = Get-WmiObject -Class Win32_SystemEnclosure | ForEach-Object {$_.SMBIOSAssetTag}
 
 
-If (!$bios) {
+If ([string]::IsNullOrWhitespace($bios)) {
 
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 [void][System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
