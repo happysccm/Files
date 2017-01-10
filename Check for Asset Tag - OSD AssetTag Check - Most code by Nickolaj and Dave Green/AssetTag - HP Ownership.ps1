@@ -43,6 +43,10 @@ $manufacturer  = Get-WmiObject -Class Win32_ComputerSystem | ForEach-Object {$_.
 If (($manufacturer -like '*Hewlett-Packard*') -or ($manufacturer -like '*HP*')) {
 $bios = Get-WmiObject -Name root\hp\instrumentedbios -Cl HP_BiosSetting | ? {$_.Name -like "*Ownership Tag*"} | Select -ExpandProperty Value
 }
+ElseIf ($manufacturer -like "*Microsoft*")  {
+    Write-Host "Microsoft"
+    exit 0
+    }
 Else {
 $bios = Get-WmiObject -Class Win32_SystemEnclosure | ForEach-Object {$_.SMBIOSAssetTag}
 }
